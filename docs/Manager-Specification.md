@@ -181,7 +181,7 @@ Use Cases defined here are generic Use Cases for Package Managers. Use Cases spe
 
 <img src="media\Manager\image3.png" style="width:6.925in;height:5.19722in" alt="Diagram Description automatically generated" />
 
-<span id="_Toc117577707" class="anchor"></span Figure 2‑1 Use Case map with PME or Flowsheet Builder as Actors
+<span id="_Toc117577707" class="anchor"></span>Figure 2‑1 Use Case map with PME or Flowsheet Builder as Actors
 
 ### Use Case Priorities
 

@@ -179,7 +179,7 @@ Use Cases defined here are generic Use Cases for Package Managers. Use Cases spe
 
 ### Use Case map
 
-<img src="media\Manager\image3.png" style="width:6.925in;height:5.19722in" alt="Diagram Description automatically generated" />
+<img src="media\image3.png" style="width:6.925in;height:5.19722in" alt="Diagram Description automatically generated" />
 
 <span id="_Toc117577707" class="anchor"></span>Figure 2‑1 Use Case map with PME or Flowsheet Builder as Actors
 
@@ -351,19 +351,19 @@ None
 
 A Manager is a Primary PMC object. A PME must use it as such. The following sequence diagram exemplifies how a new instance of a Manager is used by a PME.
 
-<img src="media\Manager\image4.png" style="width:4.28125in;height:6.20833in" alt="Diagram Description automatically generated with low confidence" />
+<img src="media\image4.png" style="width:4.28125in;height:6.20833in" alt="Diagram Description automatically generated with low confidence" />
 
 <span id="_Toc117577708" class="anchor"></span>Figure 3‑1 Example of Manager lifespan
 
 The following state diagram describes which are the states through which a Manager goes, and emphasizes the need to terminate the Manager.
 
-<img src="media\Manager\image5.png" style="width:3.78125in;height:4.55208in" alt="Diagram Description automatically generated" />
+<img src="media\image5.png" style="width:3.78125in;height:4.55208in" alt="Diagram Description automatically generated" />
 
 <span id="_Toc117577709" class="anchor"></span>Figure 3‑2 State diagram of Manager
 
 The sequence of actions around the creation of a Primary PMC Object based on a Template available from a Manager is exemplified below:
 
-<img src="media\Manager\image6.png" style="width:6.925in;height:5.02292in" alt="A picture containing table Description automatically generated" />
+<img src="media\image6.png" style="width:6.925in;height:5.02292in" alt="A picture containing table Description automatically generated" />
 
 <span id="_Toc117577710" class="anchor"></span>Figure 3‑3 Using a Primary PMC created from a Template
 
@@ -371,11 +371,11 @@ The sequence of actions around the creation of a Primary PMC Object based on a T
 
 A Manager is a Primary PMC component. The Manager implements the *ICapeManager* interface as well as CAPE-OPEN common interfaces mandatory for a Primary Process Modelling Component that itself derives from any CAPE-OPEN Component.
 
-<img src="media\Manager\image7.png" style="width:3.84375in;height:1.45833in" alt="Diagram, schematic Description automatically generated" />
+<img src="media\image7.png" style="width:3.84375in;height:1.45833in" alt="Diagram, schematic Description automatically generated" />
 
 <span id="_Ref116487029" class="anchor"></span>Figure 3‑4 Interfaces implemented by any CAPE-OPEN Object
 
-<img src="media\Manager\image8.png" style="width:4.8125in;height:2.30208in" alt="Diagram Description automatically generated" />
+<img src="media\image8.png" style="width:4.8125in;height:2.30208in" alt="Diagram Description automatically generated" />
 
 <span id="_Ref116486972" class="anchor"></span>Figure 3‑5 Interfaces
 implemented by any Primary PMC object 
@@ -384,13 +384,13 @@ As per the diagrams in Figure 3‑4 and in Figure 3‑5, a Manager must handle i
 
 The component diagram of a Manager is as shown in Figure 3‑6.
 
-<img src="media\Manager\image9.png" style="width:4.45833in;height:2.55208in" alt="Diagram Description automatically generated" />
+<img src="media\image9.png" style="width:4.45833in;height:2.55208in" alt="Diagram Description automatically generated" />
 
 <span id="_Ref89001138" class="anchor"></span>Figure 3‑6 Component diagram: Manager
 
 The concept of Manager presumes that all Primary PMC objects created by a Manager are persistable Primary PMC objects as depicted in Figure 3‑7.
 
-<img src="media\Manager\image10.png" style="width:5.13542in;height:2.70833in" alt="Diagram Description automatically generated" />
+<img src="media\image10.png" style="width:5.13542in;height:2.70833in" alt="Diagram Description automatically generated" />
 
 <span id="_Ref116487099" class="anchor"></span>Figure 3‑7 Persistable Primary PMC
 
@@ -406,7 +406,7 @@ Note that a Manager may have more than one type of managed Objects. For example,
 
 The following figure describes the *ICapeManager* interface.
 
-<img src="media\Manager\image11.png" style="width:5.81458in;height:1.9101in" alt="Graphical user interface, text, application, chat or text message Description automatically generated" />
+<img src="media\image11.png" style="width:5.81458in;height:1.9101in" alt="Graphical user interface, text, application, chat or text message Description automatically generated" />
 
 <span id="_Toc117577715" class="anchor"></span>Figure 3‑8 Interface
 diagram of *ICapeManager*
@@ -542,7 +542,7 @@ This chapter lists possible scenarios for a Manager component.
 
 Property Packages can be managed by a Property Package Manager. 
 
-<img src="media\Manager\image12.png" style="width:3.42708in;height:2.88542in" alt="Diagram Description automatically generated" />
+<img src="media\image12.png" style="width:3.42708in;height:2.88542in" alt="Diagram Description automatically generated" />
 
 <span id="_Toc117577716" class="anchor"></span>Figure 4‑1 Property Package Manager
 
@@ -550,7 +550,7 @@ Property Packages can be managed by a Property Package Manager.
 
 Chemical Reaction Packages are managed by a Chemical Reaction Package Manager.
 
-<img src="media\Manager\image13.png" style="width:2.96875in;height:2.5in" alt="Diagram Description automatically generated" />
+<img src="media\image13.png" style="width:2.96875in;height:2.5in" alt="Diagram Description automatically generated" />
 
 <span id="_Toc117577717" class="anchor"></span>Figure 4‑2 Chemical Reaction Package Manager
 

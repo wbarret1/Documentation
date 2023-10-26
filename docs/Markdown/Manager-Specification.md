@@ -39,20 +39,17 @@ This chapter defines the overall architectural design, the textual requirements 
 
 Any Primary PMC Object is characterized by a component type. The characterization is made through a pre-defined Category ID for stand-alone Primary PMC Objects or through the Category ID of the Manager that creates the Primary PMC Object. For example, there is a pre-defined Category ID of a stand-alone Property Package and there is a pre-defined Category ID for a Property Package Manager.
 
-Some PMCs are custom-made for one scenario and have only one configuration. In that case these PMCs will be made stand-alone PMCs by their developer/vendor. In other cases, a more generic software component allows for customization of PMC objects by the end-user. For example, a Property Package Manager allows for configuration of a
-Property Package (e.g., selection of compounds, of thermodynamic models, of phases supported). Instead of requiring each of the configurations to be registered as a stand-alone software component, a Manager is the single software component to be registered, and visible to the end-user as such.
+Some PMCs are custom-made for one scenario and have only one configuration. In that case these PMCs will be made stand-alone PMCs by their developer/vendor. In other cases, a more generic software component allows for customization of PMC objects by the end-user. For example, a Property Package Manager allows for configuration of a Property Package (e.g., selection of compounds, of thermodynamic models, of phases supported). Instead of requiring each of the configurations to be registered as a stand-alone software component, a Manager is the single software component to be registered, and visible to the end-user as such.
 
 Each Manager software component type has a stand-alone counterpart. For example, a Manager for Chemical Reaction Packages, a.k.a. a Chemical Reaction Package Manager, finds its counterpart in a stand-alone Chemical Reaction Package, which is not managed by a Manager. This document does not describe how any stand-alone PMC Object behaves.
 
 A Manager is responsible for instantiating Primary PMC Objects. A Manager maintains a set of Templates, each containing the configuration of the instance of a Primary PMC Object. There are three different scenarios leading to the instantiation of a Primary PMC Object. A PME can request a Manager to create Primary PMC Objects as follows:
 
-1.  an un-configured Primary PMC Object for subsequent de-persistence by
-    the PME,
+1.  an un-configured Primary PMC Object for subsequent de-persistence by the PME,
 
 2.  from a list of pre-configured Templates,
 
-3.  a new PMC Object to be configured on-the-fly by the Flowsheet
-    Builder.
+3.  a new PMC Object to be configured on-the-fly by the Flowsheet Builder.
 
 In all circumstances, the remaining lifespan of a Primary PMC object created by a Manager is like for any Primary PMC object, starting with *ICapeUtilities::Initialize* and ending with *ICapeUtilities::Terminate*.
 
@@ -62,13 +59,11 @@ The visibility of a Template is not restricted to a particular session of the Ma
 
 To ensure portability over time and between machines, there is a need for a straightforward workflow that requires persistence to be implemented on Primary PMC Objects created through a Manager. Therefore, Primary PMC Objects created by the Manager must implement persistence. 
 
-The workflow for restoring a Primary PMC is distinctly different from the workflow for creating a new Primary PMC that is not based on a
-Template. In contrast to functionality offered by *ICapeThermoPropertyPackageManager* (i), for restoring a Primary PMC, the PME does not need to pick a Template name from a list and specify it to the Manager. Instead of the PME saving the Template name, the PME calls a method on the Manager that creates and returns the Primary PMC object for the purpose of de-persistence. Subsequently the PME de-persists the returned Primary PMC Object.
+The workflow for restoring a Primary PMC is distinctly different from the workflow for creating a new Primary PMC that is not based on a Template. In contrast to functionality offered by *ICapeThermoPropertyPackageManager* (i), for restoring a Primary PMC, the PME does not need to pick a Template name from a list and specify it to the Manager. Instead of the PME saving the Template name, the PME calls a method on the Manager that creates and returns the Primary PMC object for the purpose of de-persistence. Subsequently the PME de-persists the returned Primary PMC Object.
 
 A Manager advertises whether it supports creating a new instance from scratch.
 
-As a Primary PMC, a Manager and the objects it creates implement *ICapeUtilities* and therefore may support editing functionality through *ICapeUtilities::Edit*. If a component created by a Manager is being edited, the expectation is to change the configuration of the component. However, editing a Manager translates into managing its list of Templates (e.g., add, remove, rename, edit a Template). A Manager may provide functionality to save, as a Template, the configuration of a particular instance of the Primary PMC Object created by the Manager, for example via a button in the GUI of the Primary PMC Object. Such functionality would allow the end-user to save a Template in the form of
-an instance in the flowsheet document to transfer the Template to another machine. The Manager may also provide more direct functionality to import/export Templates, for example through the private GUI of the Manager. All the above operations that pertain to the configuration of the Manager are private to the Manager and fall outside of the scope of this interface specification.
+As a Primary PMC, a Manager and the objects it creates implement *ICapeUtilities* and therefore may support editing functionality through *ICapeUtilities::Edit*. If a component created by a Manager is being edited, the expectation is to change the configuration of the component. However, editing a Manager translates into managing its list of Templates (e.g., add, remove, rename, edit a Template). A Manager may provide functionality to save, as a Template, the configuration of a particular instance of the Primary PMC Object created by the Manager, for example via a button in the GUI of the Primary PMC Object. Such functionality would allow the end-user to save a Template in the form of an instance in the flowsheet document to transfer the Template to another machine. The Manager may also provide more direct functionality to import/export Templates, for example through the private GUI of the Manager. All the above operations that pertain to the configuration of the Manager are private to the Manager and fall outside of the scope of this interface specification.
 
 In the scope of the Manager, a Template is identified through its name only. In the current version of the specification, no other generic descriptor of a Template is provided.
 
@@ -425,8 +420,7 @@ Errors
 
 Notes
 
-If *CreateNew* function is not implemented, the property value is False. The PME can use this property to properly arrange its user interface,
-for example enable/disable a button.
+If *CreateNew* function is not implemented, the property value is False. The PME can use this property to properly arrange its user interface, for example enable/disable a button.
 
 | Interface Name | *ICapeManager*                 |
 |----------------|--------------------------------|
@@ -442,7 +436,7 @@ Errors
 
 Notes
 
-If *CreateNew* was not previously called in the current thread, the property may raise an error or have an arbitrary value. 
+If *CreateNew* was not previously called in the current thread, the property may raise an error or have an arbitrary value.
 
 | Interface Name | *ICapeManager* |
 |----------------|----------------|
@@ -564,8 +558,7 @@ Only terms specific to the Chemical Reactions interfaces are defined in this sec
 
 ## Flowsheet Builder
 
-The person who sets up the flowsheet, the structure of the flowsheet, chooses thermodynamic models and the unit operation models that are in the flowsheet. This person hands over a working flowsheet to the Flowsheet User (The person who uses an existing flowsheet. This person will put new data into the flowsheet, rather than change the structure
-of the flowsheet). The Flowsheet Builder can act as a Flowsheet User.
+The person who sets up the flowsheet, the structure of the flowsheet, chooses thermodynamic models and the unit operation models that are in the flowsheet. This person hands over a working flowsheet to the Flowsheet User (The person who uses an existing flowsheet. This person will put new data into the flowsheet, rather than change the structure of the flowsheet). The Flowsheet Builder can act as a Flowsheet User.
 
 ## Instance
 
@@ -573,8 +566,7 @@ An instance is a Primary Process Modelling Component. It is a software component
 
 ## Template
 
-A Manager operates on a list of Templates. A Template contains the configuration of the instance to be created by the Manager. Multiple instances can be created by the Manager from a given Template. Once an instance is created from a Template, the configuration of the instance may be modified through functionality provided by the instance. Any
-configuration change of the instance does not affect the Template.
+A Manager operates on a list of Templates. A Template contains the configuration of the instance to be created by the Manager. Multiple instances can be created by the Manager from a given Template. Once an instance is created from a Template, the configuration of the instance may be modified through functionality provided by the instance. Any configuration change of the instance does not affect the Template.
 
 # Bibliography
 

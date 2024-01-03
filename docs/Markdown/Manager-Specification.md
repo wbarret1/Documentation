@@ -6,10 +6,10 @@ This document contains the textual CAPE-OPEN specification of the CAPE-OPEN Prim
 
 This CAPE-OPEN Interface Specification Document has been developed within the Thermo Special Interest Group. The following are the main contributors:
 
-Jasper van Baten AmsterCHEM
-Sergej Blagov BASF SE
-Michel Pons CO-LaN
-Klaus Möller University of Cape Town
+* Jasper van Baten AmsterCHEM
+* Sergej Blagov BASF SE
+* Michel Pons CO-LaN
+* Klaus Möller University of Cape Town
 
 # Introduction
 

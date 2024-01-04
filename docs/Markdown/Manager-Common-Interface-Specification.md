@@ -223,7 +223,7 @@ Use Case applies a generic Use Case, applicable to all Primary PMCs, within the 
 |<u>Uses</u>:|None.|
 || |
 
-##### UC-MGR-03 Enumerate Templates Available in a Manager{#uc-mgr-03}
+##### UC-MGR-03 Enumerate Templates Available in a Manager {#uc-mgr-03}
 
 Flowsheet Builder wants to know which Templates are available from the Manager. Therefore, the PME needs the list of Templates.
 
@@ -241,7 +241,7 @@ The PME should not instantiate all available Managers but should instantiate the
 |<u>Uses</u>:|None|
 || |
 
-##### UC-MGR-04 Select a template{#uc-mgr-04}
+##### UC-MGR-04 Select a template {#uc-mgr-04}
 
 || |
 |---|---|
@@ -255,7 +255,7 @@ The PME should not instantiate all available Managers but should instantiate the
 |<u>Uses</u>:|&lt;Flowsheet Builder has cancelled the selection.&lt;|
 || |
 
-##### UC-MGR-05 Check Whether Manager Supports Creation without A Template{#uc-mgr-05}
+##### UC-MGR-05 Check Whether Manager Supports Creation without A Template {#uc-mgr-05}
 
 Context: the PME wants to provide the Flowsheet Builder with the possibility to create a Primary PMC Object from a Manager without using a Template. In a typical workflow, the PME checks if the Manager supports such a functionality: it allows the PME to enable/disable appropriate controls within its GUI.
 
@@ -287,7 +287,7 @@ Context: The Process Engineer wants to create a custom Primary PMC object from s
 |<u>Uses</u>:|None|
 || |
 
-##### UC-MGR-07 Create a Primary PMC Object from a Template{#uc-mgr-07}
+##### UC-MGR-07 Create a Primary PMC Object from a Template {#uc-mgr-07}
 
 Context: the Flowsheet Builder may have selected a Template name using UC-MGR-04 or a Template name is known to the PME. This Use Case describes the direct instantiation of a Primary PMC object that the PME launches before any use of the object. This is a common and necessary step in all procedures leading to exercising a Primary PMC within a Flowsheet.
 
@@ -322,7 +322,7 @@ If the Template name is recognized, the Manager creates an instance of the Prima
 
 None
 
-##### UC-MGR-08 Restore a Primary PMC{#uc-mgr-08}
+##### UC-MGR-08 Restore a Primary PMC {#uc-mgr-08}
 
 <u>Actor:</u> &lt;PME&gt;
 
@@ -356,7 +356,7 @@ The PME initializes the restored Primary PMC Object using *ICapeUtilities::Initi
 
 <u>Uses:</u> None
 
-##### UC-MGR-09 Configure a Manager{#uc-mgr-09}
+##### UC-MGR-09 Configure a Manager {#uc-mgr-09}
 
 Context: Some Managers may have external means of configuration, for example save a particular document as a Template for a CAPE-OPEN Manager. As such, functionality falls out of the CAPE-OPEN scope and is not described here.
 

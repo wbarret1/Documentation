@@ -77,19 +77,19 @@ Through the Manager there is no access to internal information of the Template o
 Through textual requirements, this section explains how a Manager will interact with other software such as a PME or a Primary Process Modelling Component. These functional requirements are mostly written in natural language with technical terms defined in the Glossary when used repeatedly. Requirements are not organized in order of importance,
 urgency, and convenience.
 
-1. : A Manager is a primary Process Modelling Component.
+#### REQ-MQR-01: A Manager is a primary Process Modelling Component. {#req-mgr-01}
 
 *<u>Rationale:</u>* A Manager is created by a PME so it is a Primary Process Modelling Component.
 
-2. : A Manager is categorized as a CAPE-OPEN component.
+#### REQ-MQR-02: A Manager is categorized as a CAPE-OPEN component. {#req-mgr-02}
 
 *<u>Rationale:</u>* The Category ID for a CAPE-OPEN component appears in the registry for each of the CAPE-OPEN Primary PMCs. In future CAPE-OPEN versions, the ”CAPE-OPEN Component” Category ID will be used to indicate that CAPE-OPEN version 1.1 is supported by the component.
 
-3.  : Objects instantiated by a Manager are Primary Process Modelling Components.
+#### REQ-MQR-03: Objects instantiated by a Manager are Primary Process Modelling Components. {#req-mgr-03}
 
 *<u>Rationale</u>*: After instantiation by a Manager, from the PME point of view, the Primary PMC Object is indistinguishable from a stand-alone Primary PMC Object of the same type.
 
-4.  : A Manager is registered with CAPE-OPEN Category ID(s) indicating which type(s) of software components the Manager creates.
+#### REQ-MQR-04: A Manager is registered with CAPE-OPEN Category ID(s) indicating which type(s) of software components the Manager creates. {#req-mgr-04}
 
 *<u>Rationale:</u>* A Manager is a Primary Process Modelling Component. Each Primary Process Modelling Component belongs to a category that allows a PME to create a list of the Primary Process Modelling Components belonging to this category without the need to instantiate each of those.
 
@@ -97,7 +97,7 @@ Without the Manager indicating the type(s) of Manager it is, the PME would list 
 
 Only stand-alone Primary PMC Objects are registered with their own Category IDs.
 
-5.  : Each instance created by a Manager is of the software component type(s) consistent with the Manager type(s).
+#### REQ-MQR-05: Each instance created by a Manager is of the software component type(s) consistent with the Manager type(s). {#req-mgr-05}
 
 *<u>Rationale:</u>* For example, if the Manager is a Property Package Manager, all software components created by the Manager must be Property Packages and must comply with the requirements on a Property Package as outlined in (i).
 
@@ -105,43 +105,42 @@ If the Manager is a Chemical Reaction Package Manager, all software components c
 
 If the Manager is both a Property Package Manager and a Chemical Reaction Package Manager, all software components created by the Manager must be Property Packages supporting Chemical Reactions and must comply with the requirements on a Property Package supporting Chemical Reactions as outlined in (ii).
 
-6.  : A Manager provides the service to deliver the list of names of its Templates.
+#### REQ-MQR-06: A Manager provides the service to deliver the list of names of its Templates. {#req-mgr-06}
 
 *<u>Rationale:</u>* The name of the Template is needed to request the creation of a Primary PMC based on the Template. For ease of interaction with the Process Engineer, the PME must have access to the list of Templates supported by the Manager.
 
 Note that it is not required from the Manager to be able to create Primary PMC Objects from all the Templates listed. Creation may fail for a number of reasons (e.g., ill configured Template, license is not present for a particular feature).
 
-7.  : A Manager creates an instance from a Template with the same name as the Template.
+#### REQ-MQR-07: A Manager creates an instance from a Template with the same name as the Template. {#req-mgr-07}
 
 *<u>Rationale:</u>* Matter of consistency which can be helpful to the Process Engineer. If names need to be unique (names used in a Collection for instance), it is the responsibility of the PME to rename the instance as needed using operations from *ICapeIdentification* (x). 
 
-8.  : The name of a Template follows the rules of the name property in *ICapeIdentification.*
+#### REQ-MQR-08: The name of a Template follows the rules of the name property in *ICapeIdentification.* {#req-mgr-08}
 
 *<u>Rationale:</u>* Since the instance created from a Template is identified by the name of the Template, the name of the Template must follow the rules applicable to any name identifying a CAPE-OPEN component through *ICapeIdentification* (x).
 
-9.  : A Template is identified by its name in a case insensitive manner.
+#### REQ-MQR-09: A Template is identified by its name in a case insensitive manner.  {#req-mgr-09}
 
 *<u>Rationale:</u>* Case insensitiveness is in accordance with choices made in CAPE-OPEN.
 
-10. : All Template names must be unique within a Manager.
+#### REQ-MQR-10: All Template names must be unique within a Manager. {#req-mgr-10}
 
 *<u>Rationale:</u>* Names are used by the Manager and the PME to uniquely identify Templates.
 
-11. : If a PME persists the state of a Primary PMC Object created via a Manager, the PME persists also sufficient information to create the
-    Manager.
+#### REQ-MQR-11: If a PME persists the state of a Primary PMC Object created via a Manager, the PME persists also sufficient information to create the Manager. {#req-mgr-11}
 
 *<u>Rationale:</u>* The PME cannot directly instantiate a Primary PMC Object originally created via a Manager. Therefore, the PME must be able to find which Manager needs to be instantiated in order for the proper Manager to load back the Primary PMC Object. The PME needs to keep sufficient information (e.g., ProgID, version independent ProgID, or
 CLSID) that defines uniquely the Manager responsible for the instantiation of the Primary PMC Object.
 
-12. : A Primary PMC Object created via a Manager implements persistence.
+#### REQ-MQR-12: A Primary PMC Object created via a Manager implements persistence. {#req-mgr-12}
 
 *<u>Rationale:</u>* As per the design decision, persistence is mandatory for all Primary PMC Objects created via a Manager.
 
-13. **:** A Manager advertises whether it supports creating a new instance from scratch.
+#### REQ-MQR-013: A Manager advertises whether it supports creating a new instance from scratch. {#req-mgr-13}
 
 *<u>Rationale</u>*: A Manager may or may not support creation of a new instance w/o a Template. The PME can properly arrange its user interface (for example enabling/disabling “new instance”) if it knows whether the Manager supports or not this functionality.
 
-14. : PME must initialize the Primary PMC object after creation.
+#### REQ-MQR-14: PME must initialize the Primary PMC object after creation.
 
 *<u>Rationale</u>*: To conform with the Utilities interface specification (iv), the PME must initialize the Primary PMC Object, irrespective of the way this object was created by the Manager.
 
@@ -157,23 +156,23 @@ Use Cases defined here are generic Use Cases for Package Managers. Use Cases spe
 
 #### List of Use Cases
 
-[UC-MGR-01 Enumerate managers](#enumerate-managers)
+[UC-MGR-01 Enumerate managers](#uc-mgr-01)
 
-[UC-MGR-02 Create and Initialize a Manager](#create-and-initialize-a-manager)
+[UC-MGR-02 Create and Initialize a Manager](#uc-mgr-02)
 
-[UC-MGR-03 Enumerate Templates Available in a Manager](#enumerate-templates-available-in-a-manager)
+[UC-MGR-03 Enumerate Templates Available in a Manager](#uc-mgr-03)
 
-[UC-MGR-04 Select a template](#select-a-template) 
+[UC-MGR-04 Select a template](#uc-mgr-04) 
 
-[UC-MGR-05 Check Whether Manager Supports Creation without A Template](#check-whether-manager-supports-creation-without-a-template)
+[UC-MGR-05 Check Whether Manager Supports Creation without A Template](#uc-mgr-05)
 
-[UC-MGR-06 Create and Customize a Primary PMC Object Without Using a Template](#create-and-customize-a-primary-pmc-object-without-using-a-template)
+[UC-MGR-06 Create and Customize a Primary PMC Object Without Using a Template](#uc-mgr-06)
 
-[UC-MGR-07 Create a Primary PMC Object from a Template](#create-a-primary-pmc-object-from-a-template)
+[UC-MGR-07 Create a Primary PMC Object from a Template](#uc-mgr-07)
 
-[UC-MGR-08 Restore a Primary PMC](#restore-a-primary-pmc)
+[UC-MGR-08 Restore a Primary PMC](#uc-mgr-08)
 
-[UC-MGR-09 Configure a Manager](#configure-a-manager)
+[UC-MGR-09 Configure a Manager](#uc-mgr-09)
 
 #### Use Case map
 
@@ -221,7 +220,7 @@ Use Case applies a generic Use Case, applicable to all Primary PMCs, within the 
 |<u>Priority</u>:| &lt;High&gt;|
 |<u>Status:</u>| &lt;This Use Case is fulfilled by middleware functionalities and *ICapeUtilities::Initialize*.&gt;|
 |<u>Pre-conditions:</u>| &lt;None&gt;|
-|<u>Flow of events:</u>|1. PME instantiates the Manager using middleware functionalities.<br>2. PME sets the Simulation Context on the Manager.<br>3. PME initializes the Manager using ICapeUtilities::Initialize.<br>Note: at the end of the lifespan of the Manager (at the latest, at the time of closing the PME), the Manager must be terminated by the PME (using ICapeUtilities::Terminate).|
+|<u>Flow of events:</u>|1. PME instantiates the Manager using middleware functionalities.<br>2. PME sets the Simulation Context on the Manager.<br>3. PME initializes the Manager using *ICapeUtilities::Initialize*.<br>Note: at the end of the lifespan of the Manager (at the latest, at the time of closing the PME), the Manager must be terminated by the PME (using *ICapeUtilities::Terminate*).|
 |<u>Post-conditions:</u>|&lt;The Manager is ready for use.&gt;|
 |<u>Errors</u>:|&lt;The Manager cannot be created.&gt;|
 |<u>Uses</u>:|None.|
@@ -236,9 +235,9 @@ The PME should not instantiate all available Managers but should instantiate the
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
-|<u>Status:</u>| &lt;Use Case is fulfilled by *ICapeManager::GetTemplateList* method.&gt;|
-|<u>Pre-conditions:</u>| &lt;The Manager has been created using [UC-MGR-02](#uc-mgr-02)&gt;|
-|<u>Flow of events:</u>|1. The PME calls GetTemplateList.<br>2. The Manager returns a list of Template names (list could be empty).</li></ol>|
+|<u>Status:</u>| &lt;Use Case is fulfilled by [*ICapeManager::GetTemplateList*](#icapemanagergettemplatelist) method.&gt;|
+|<u>Pre-conditions:</u>| &lt;The Manager has been created using [UC-MGR-02](#uc-mgr-02).&gt;|
+|<u>Flow of events:</u>|1. The PME calls [*GetTemplateList*](#icapemanagergettemplatelist).<br>2. The Manager returns a list of Template names (list could be empty).</li></ol>|
 |<u>Post-conditions:</u>|&lt;The available Templates have been enumerated and can be presented to the Process Engineer.&gt;|
 |<u>Errors</u>:|&lt;The Manager fails to provide a list of Template names.&gt;|
 |<u>Uses</u>:|None|
@@ -251,7 +250,7 @@ The PME should not instantiate all available Managers but should instantiate the
 |<u>Actor</u>:| &lt;Flowsheet Builder&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
 |<u>Status:</u>| &lt;Use Case is fulfilled by functionality internal to the PME.&gt;|
-|<u>Pre-conditions:</u>| &lt;[UC-MGR-03](#uc-mgr-03) has been executed successfully&gt;|
+|<u>Pre-conditions:</u>| &lt;[UC-MGR-03](#uc-mgr-03) has been executed successfully.&gt;|
 |<u>Flow of events:</u>|1. The PME presents a list of Template names to the Flowsheet Builder.<br>2. The Flowsheet Builder selects a Template name from the list.<br>Note that the Flowsheet Builder is provided only the names of the Templates and no other information. Upon request from the Flowsheet Builder, the PME may offer access to more information on a given Template. Access is obtained by instantiating a Primary PMC Object from the Template (exercising [UC-MGR-07](#uc-mgr-07). It is not advisable for the PME to automatically instantiate a Primary PMC Object for each available Template in the list as this may be a very expensive and error-prone operation.|
 |<u>Post-conditions:</u>|&lt;A Template has been selected.&gt;|
 |<u>Errors</u>:|&lt;Flowsheet Builder has cancelled the selection.&gt;|
@@ -265,10 +264,10 @@ Context: the PME wants to provide the Flowsheet Builder with the possibility to 
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
-|<u>Status:</u>| &lt;Use Case is fulfilled through property *SupportsCreateNew* of *ICapeManager*&gt;|
-|<u>Pre-conditions:</u>| &lt;[UC-MGR-02](#uc-mgr-02) has been executed successfully&gt;|
-|<u>Flow of events:</u>|The PME obtains the value of the property *SupportsCreateNew* from *ICapeManager*.|
-|<u>Post-conditions:</u>|&lt;Value of property *SupportsCreateNew* is known to the PME&gt;<br> &lt;The PME arranges its user interface accordingly&gt;|
+|<u>Status:</u>| &lt;Use Case is fulfilled through property [*SupportsCreateNew* of *ICapeManager*](#icapemanagersupportscreatenew).&gt;|
+|<u>Pre-conditions:</u>| &lt;[UC-MGR-02](#uc-mgr-02) has been executed successfully.&gt;|
+|<u>Flow of events:</u>|The PME obtains the value of the property [*SupportsCreateNew* from *ICapeManager*](#icapemanagersupportscreatenew).|
+|<u>Post-conditions:</u>|&lt;Value of property [*SupportsCreateNew*](#icapemanagersupportscreatenew) is known to the PME.&gt;<br> &lt;The PME arranges its user interface accordingly.&gt;|
 |<u>Errors</u>:|None|
 |<u>Uses</u>:|None|
 
@@ -280,81 +279,40 @@ Context: The Process Engineer wants to create a custom Primary PMC object from s
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;Medium&gt;|
-|<u>Status:</u>| &lt;Use Case is fulfilled by *ICapeManager::CreateNew* and by property *ICapeManager::LastCreateNewWasCanceledByUser*&gt;|
-|<u>Pre-conditions:</u>| &lt;[UC-MGR-02](#uc-mgr-02) has been executed successfully&gt;|
-|<u>Flow of events:</u>|<ol><li>The PME optionally exercises UC-MGR-05.<ol type="a"><li>If the Manager does not support creation of a Primary PMC object without using a Template, Use Case stops here.</li></ol><li>The PME exercises ICapeManager::CreateNew.</li><li>The Manager creates a new Primary PMC Object without using any Template. The Primary PMC Object may be a default or an empty Primary PMC Object. The Manager may let the Flowsheet Builder performs customization of the Primary PMC object, using means private to the Manager.<ol type="a"><li>If the Flowsheet Builder cancels the creation, the Manager raises an exception.</li><li>The PME may request the *ICapeManager::LastCreateNewWasCanceledByUser* property from the Manager to decide whether to display an error message to the Flowsheet Builder. Use Case stops here.</li></ol><li>The Manager returns a new Primary PMC Object.</li></ol>|
+|<u>Status:</u>| &lt;Use Case is fulfilled by [*ICapeManager::CreateNew*](#icapemanagercreatenew) and by property [*ICapeManager::LastCreateNewWasCanceledByUser*](#icapemanagerlastcreatenewwascanceledbyuser).&gt;|
+|<u>Pre-conditions:</u>| &lt;[UC-MGR-02](#uc-mgr-02) has been executed successfully.&gt;|
+|<u>Flow of events:</u>|<ol><li>The PME optionally exercises [UC-MGR-05](#uc-mgr-05).<ol type="a"><li>If the Manager does not support creation of a Primary PMC object without using a Template, Use Case stops here.</li></ol><li>The PME exercises [*ICapeManager::CreateNew*](#icapemanagercreatenew).</li><li>The Manager creates a new Primary PMC Object without using any Template. The Primary PMC Object may be a default or an empty Primary PMC Object. The Manager may let the Flowsheet Builder performs customization of the Primary PMC object, using means private to the Manager.<ol type="a"><li>If the Flowsheet Builder cancels the creation, the Manager raises an exception.</li><li>The PME may request the [*ICapeManager::LastCreateNewWasCanceledByUser*](#icapemanagerlastcreatenewwascanceledbyuser) property from the Manager to decide whether to display an error message to the Flowsheet Builder. Use Case stops here.</li></ol><li>The Manager returns a new Primary PMC Object.</li></ol>|
 |<u>Post-conditions:</u>|&lt;A Primary PMC Object is available to the PME.&gt;|
-|<u>Errors</u>:|&lt;Flowsheet Builder cancelled the creation&gt;;<br> &lt;Manager does not support creation of a Primary PMC Object from scratch&gt;; <br>&lt;The PMC instance cannot be created and is not delivered to the PME (for example out of memory, license issue)&gt;|
+|<u>Errors</u>:|&lt;Flowsheet Builder cancelled the creation.&gt;;<br> &lt;Manager does not support creation of a Primary PMC Object from scratch.&gt;; <br>&lt;The PMC instance cannot be created and is not delivered to the PME (for example out of memory, license issue).&gt;|
 |<u>Uses</u>:|[UC-MGR-05](#uc-mgr-05)|
 
 ##### UC-MGR-07 Create a Primary PMC Object from a Template {#uc-mgr-07}
 
-Context: the Flowsheet Builder may have selected a Template name using UC-MGR-04 or a Template name is known to the PME. This Use Case describes the direct instantiation of a Primary PMC object that the PME launches before any use of the object. This is a common and necessary step in all procedures leading to exercising a Primary PMC within a Flowsheet.
+Context: the Flowsheet Builder may have selected a Template name using [UC-MGR-04](#uc-mgr-04) or a Template name is known to the PME. This Use Case describes the direct instantiation of a Primary PMC object that the PME launches before any use of the object. This is a common and necessary step in all procedures leading to exercising a Primary PMC within a Flowsheet.
 
-<u>Actor</u>: &lt;PME&gt;
-
-<u>Priority</u>: &lt;High&gt;
-
-<u>Status:</u> &lt;Use Case is fulfilled by
-*ICapeManager::CreateFromTemplate* and by middleware functionalities&gt;
-
-<u>Pre-conditions</u>:
-
-&lt;UC-MGR-02 has been executed successfully&gt; &lt;The PME knows which previously configured PMC Object must be instantiated, for example through execution of UC-MGR-04&gt;
-
-<u>Flow of events</u>:
-
-The PME executes *ICapeManager::CreateFromTemplate* with the name of the Template as input argument.
-
-If the Template name is recognized, the Manager creates an instance of the Primary PMC, and delivers it to the PME.
-
-<u>Post-conditions</u>:
-
-&lt;An object representing the Primary PMC is instantiated&gt;
-
-<u>Errors</u>:
-
-&lt;The Template is not recognised by the Manager&gt;
-
-&lt;The PMC instance cannot be created and is not delivered to the PME (for example out of memory, license issue)&gt;
-
-<u>Uses</u>:
-
-None
+| | |
+|---|---|
+|<u>Actor</u>:| &lt;PME&gt;|
+|<u>Priority</u>:| &lt;High&gt;|
+|<u>Status:</u>| &lt;Use Case is fulfilled by *ICapeManager::CreateFromTemplate* and by middleware functionalities.&gt;|
+|<u>Pre-conditions:</u>|&lt;[UC-MGR-02](#uc-mgr-02) has been executed successfully.&gt;<br>&lt;The PME knows which previously configured PMC Object must be instantiated, for example through execution of [UC-MGR-04](#uc-mgr-04).&gt;|
+|<u>Flow of events:</u>|The PME executes *ICapeManager::CreateFromTemplate* with the name of the Template as input argument.<br>If the Template name is recognized, the Manager creates an instance of the Primary PMC, and delivers it to the PME.|
+|<u>Post-conditions:</u>|&lt;An object representing the Primary PMC is instantiated.&gt;|
+|<u>Errors</u>:|&lt;The Template is not recognised by the Manager.&gt;;<br> &lt;The PMC instance cannot be created and is not delivered to the PME (for example out of memory, license issue).&gt;|
+|<u>Uses</u>:|None|
 
 ##### UC-MGR-08 Restore a Primary PMC {#uc-mgr-08}
 
-<u>Actor:</u> &lt;PME&gt;
-
-<u>Priority:</u> &lt;High&gt;
-
-<u>Status:</u> &lt;This Use Case is fulfilled by the method *CreateForLoad* of *ICapeManager* interface&gt;
-
-<u>Pre-conditions:</u>
-
-&lt;UC-MGR-02 has been executed successfully&gt;; &lt;Data that was previously persisted by the Primary PMC Object is available to the PME&gt;
-
-<u>Flow of events:</u>
-
-The PME calls *CreateForLoad* on the Manager. The Manager returns an un-configured Primary PMC Object.
-
-The PME optionally provides the returned Primary PMC Object with a Simulation Context by invoking *ICapeUtilities::SetSimulationContext*. 
-
-The PME restores the data saved previously by the Primary PMC Object, invoking Load on the persistence interface implemented by the Primary PMC Object.
-
-The PME initializes the restored Primary PMC Object using *ICapeUtilities::Initialize*.
-
-<u>Post-conditions:</u>
-
-&lt;The PMC is available and initialized&gt;
-
-&lt;The PMC specific data have been restored&gt;
-
-<u>Errors:</u>
-
-&lt;The PMC instance cannot be created and is not delivered to the PME (for example out of memory, license issue)&gt;
-
-<u>Uses:</u> None
+| | |
+|---|---|
+|<u>Actor</u>:| &lt;PME&gt;|
+|<u>Priority</u>:| &lt;High&gt;|
+|<u>Status:</u>| &lt;This Use Case is fulfilled by the method [*CreateForLoad* of *ICapeManager*](#icapemanagercreateforload) interface.&gt;|
+|<u>Pre-conditions:</u>|&lt;[UC-MGR-02](#uc-mgr-02) has been executed successfully.&gt;<br>&lt;Data that was previously persisted by the Primary PMC Object is available to the PME.&gt;|
+|<u>Flow of events:</u>|The PME calls [*CreateForLoad*](#icapemanagercreateforload) on the Manager. The Manager returns an un-configured Primary PMC Object.<br>The PME optionally provides the returned Primary PMC Object with a Simulation Context by invoking *ICapeUtilities::SetSimulationContext*.<br>The PME restores the data saved previously by the Primary PMC Object, invoking Load on the persistence interface implemented by the Primary PMC Object.<br>The PME initializes the restored Primary PMC Object using *ICapeUtilities::Initialize*.|
+|<u>Post-conditions:</u>|&lt;The PMC is available and initialized.&gt;<br>&lt;The PMC specific data have been restored.&gt;|
+|<u>Errors</u>:|&lt;The PMC instance cannot be created and is not delivered to the PME (for example out of memory, license issue).&gt;|
+|<u>Uses</u>:|None|
 
 ##### UC-MGR-09 Configure a Manager {#uc-mgr-09}
 
@@ -364,31 +322,23 @@ A PME can also request configuration of a Manager using *ICapeUtilities::Edit*. 
 
 Per design, administration of Templates (e.g., add, remove, rename, edit a Template) is private to the Manager and falls outside of the scope of this interface specification. Priority is medium since not all Managers support editing. However PMEs should allow for any Manager to be configured though *ICapeUtilities::Edit*.
 
-<u>Actor:</u> &lt;PME&gt;
 
-<u>Priority</u>: &lt;Medium&gt;
+| | |
+|---|---|
+|<u>Actor</u>:| &lt;PME&gt;|
+|<u>Priority</u>:| &lt;Medium&gt;|
+|<u>Status:</u>| &lt;Use Case is fulfilled through *ICapeUtilities::Edit*.&gt;|
+|<u>Pre-conditions:</u>|&lt;[UC-MGR-02](#uc-mgr-02) has been executed successfully.&gt;|
+|<u>Flow of events:</u>|The PME executes *ICapeUtilities::Edit* on the Manager. The Manager may show a modal window in which it allows the Process Engineer to reconfigure the available Templates.<br>Once Edit is finished and returns OK, the PME assumes that the list of Templates available from the Manager has changed.|
+|<u>Post-conditions:</u>|&lt;New list of Templates is also available to the PME.&gt;<br>&lt;New list of Templates is also available to other PMEs&gt;|
+|<u>Errors</u>:|&lt;The Manager does not implement *ICapeUtilities::Edit* (raises a not-implemented error).&gt;|
+|<u>Uses</u>:|None|
 
-<u>Status:</u> &lt;Use Case is fulfilled through *ICapeUtilities::Edit*&gt;
-
-<u>Pre-conditions:</u> &lt;UC-MGR-02 has been executed successfully&gt;
-
-<u>Flow of events:</u>
-
-The PME executes *ICapeUtilities::Edit* on the Manager. The Manager may show a modal window in which it allows the Process Engineer to reconfigure the available Templates.
-
-Once Edit is finished and returns OK, the PME assumes that the list of Templates available from the Manager has changed.
-
-<u>Post-conditions:</u>
-
-&lt;New list of Templates is available to the PME&gt;; &lt;New list of Templates is also available to other PMEs&gt;
-
-<u>Errors</u>:
-
-&lt;The Manager does not implement *ICapeUtilities::Edit* (raises a not-implemented error)&gt;
-
-<u>Uses</u>:
-
-None
+<style>
+    th {
+        display: initial;
+    }
+</style>
 
 ## Analysis and Design
 
@@ -454,6 +404,7 @@ The following figure describes the *ICapeManager* interface.
 <span id="_Toc117577715" class="anchor"></span>Figure 3‑8 Interface
 diagram of *ICapeManager*
 
+#### ICapeManager.SupportsCreateNew
 | Interface Name | *ICapeManager*    |
 |----------------|-------------------|
 | Property Name  | SupportsCreateNew |
@@ -470,6 +421,7 @@ Notes
 
 If *CreateNew* function is not implemented, the property value is False. The PME can use this property to properly arrange its user interface, for example enable/disable a button.
 
+#### ICapeManager.LastCreateNewWasCanceledByUser
 | Interface Name | *ICapeManager*                 |
 |----------------|--------------------------------|
 | Property Name  | LastCreateNewWasCanceledByUser |
@@ -486,6 +438,7 @@ Notes
 
 If *CreateNew* was not previously called in the current thread, the property may raise an error or have an arbitrary value.
 
+#### ICapeManager.CreateForLoad
 | Interface Name | *ICapeManager* |
 |----------------|----------------|
 | Method Name    | CreateForLoad  |
@@ -507,6 +460,7 @@ Notes
 
 As per the requirements in the Persistence Common Interface Specification (vi) and the Utilities Common Interface Specification (iv), before using the created Object, the PME must invoke Load on the persistence interface of the created Object, followed by initialization (*ICapeUtilities::Initialize*). Simulation Context may be set at any time, preferably before calling Load.
 
+#### ICapeManager.CreateNew
 | Interface Name | *ICapeManager* |
 |----------------|----------------|
 | Method Name    | CreateNew      |
@@ -532,6 +486,7 @@ A new instance is not based on a Template and may be a blank, un-configured inst
 
 In CAPE-OPEN 1.2 this method will carry a CapeWindowId input argument that describes the parent window for the dialog, to conform to *ICapeUtilities::Edit*.
 
+#### ICapeManager.GetTemplateList
 | Interface Name | *ICapeManager*  |
 |----------------|-----------------|
 | Method Name    | GetTemplateList |
@@ -553,6 +508,7 @@ Notes
 
 The returned list can be empty.
 
+#### ICapeManager.CreateFromTemplate
 | Interface Name | *ICapeManager*     |
 |----------------|--------------------|
 | Method Name    | CreateFromTemplate |

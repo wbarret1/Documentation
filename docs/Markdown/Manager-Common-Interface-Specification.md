@@ -194,11 +194,6 @@ Use Cases defined here are generic Use Cases for Package Managers. Use Cases spe
 
 Typically, a PME displays to the Process Engineer a list of available stand-alone Primary PMCs as well as a list of Managers providing Primary PMCs of the same type. Use Case fulfils the second part of this process.
 
-<style>
-    th {
-        display: none;
-    }
-</style>
 | | |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
@@ -333,12 +328,6 @@ Per design, administration of Templates (e.g., add, remove, rename, edit a Templ
 |<u>Post-conditions:</u>|&lt;New list of Templates is also available to the PME.&gt;<br>&lt;New list of Templates is also available to other PMEs&gt;|
 |<u>Errors</u>:|&lt;The Manager does not implement *ICapeUtilities::Edit* (raises a not-implemented error).&gt;|
 |<u>Uses</u>:|None|
-
-<style>
-    th {
-        display: initial;
-    }
-</style>
 
 ## Analysis and Design
 

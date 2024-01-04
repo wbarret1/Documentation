@@ -195,7 +195,12 @@ Use Cases defined here are generic Use Cases for Package Managers. Use Cases spe
 
 Typically, a PME displays to the Process Engineer a list of available stand-alone Primary PMCs as well as a list of Managers providing Primary PMCs of the same type. Use Case fulfils the second part of this process.
 
-<div class = no-header/>| |
+<style>
+    th {
+        display: none;
+    }
+</style>
+| | |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
@@ -210,8 +215,7 @@ Typically, a PME displays to the Process Engineer a list of available stand-alon
 
 Use Case applies a generic Use Case, applicable to all Primary PMCs, within the context of the Manager Common interface specification. This Use Case does not introduce any additional feature to the generic Use Case.
 
-<div class = no-header>
-| |
+| | |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
@@ -221,7 +225,6 @@ Use Case applies a generic Use Case, applicable to all Primary PMCs, within the 
 |<u>Post-conditions:</u>|&lt;The Manager is ready for use.&gt;|
 |<u>Errors</u>:|&lt;The Manager cannot be created.&gt;|
 |<u>Uses</u>:|None.|
-</div>
 
 ##### UC-MGR-03 Enumerate Templates Available in a Manager {#uc-mgr-03}
 
@@ -229,7 +232,7 @@ Flowsheet Builder wants to know which Templates are available from the Manager. 
 
 The PME should not instantiate all available Managers but should instantiate the Manager(s) for which the Flowsheet Builder requests the list of Templates. Instantiation of all Managers on the system, without the Flowsheet Builder explicitly asking for it, may lead to undesired side effects such as checking out and locking licenses, substantial delays, and makes the PME susceptible to unavoidable crashes in case of an implementation error in any Manager on the system.
 
-<div class = no-header>| |
+| | |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
@@ -243,7 +246,7 @@ The PME should not instantiate all available Managers but should instantiate the
 
 ##### UC-MGR-04 Select a template {#uc-mgr-04}
 
-<div class = no-header>| |
+| | |
 |---|---|
 |<u>Actor</u>:| &lt;Flowsheet Builder&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
@@ -258,7 +261,7 @@ The PME should not instantiate all available Managers but should instantiate the
 
 Context: the PME wants to provide the Flowsheet Builder with the possibility to create a Primary PMC Object from a Manager without using a Template. In a typical workflow, the PME checks if the Manager supports such a functionality: it allows the PME to enable/disable appropriate controls within its GUI.
 
-<div class = no-header>| |
+| | |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
@@ -273,7 +276,7 @@ Context: the PME wants to provide the Flowsheet Builder with the possibility to 
 
 Context: The Process Engineer wants to create a custom Primary PMC object from scratch. The created Primary PMC Object is for use in the current PME context.
 
-<div class = no-header>| |
+| | |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;Medium&gt;|

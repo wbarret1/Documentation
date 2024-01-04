@@ -195,7 +195,7 @@ Use Cases defined here are generic Use Cases for Package Managers. Use Cases spe
 
 Typically, a PME displays to the Process Engineer a list of available stand-alone Primary PMCs as well as a list of Managers providing Primary PMCs of the same type. Use Case fulfils the second part of this process.
 
-<div class = no-header>| |
+<div class = no-header/>| |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
@@ -205,13 +205,13 @@ Typically, a PME displays to the Process Engineer a list of available stand-alon
 |<u>Post-conditions:</u>|&lt;The available Managers have been enumerated&gt;|
 |<u>Errors</u>:|None|
 |<u>Uses</u>:|None|
-</div>
 
 ##### UC-MGR-02 Create and Initialize a Manager {#uc-mgr-02}
 
 Use Case applies a generic Use Case, applicable to all Primary PMCs, within the context of the Manager Common interface specification. This Use Case does not introduce any additional feature to the generic Use Case.
 
-<div class = no-header>| |
+<div class = no-header>
+| |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;High&gt;|

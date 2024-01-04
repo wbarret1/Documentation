@@ -1,8 +1,11 @@
-# Summary
+---
+title: Manager Common Interface Specification
+---
+## Summary
 
 This document contains the textual CAPE-OPEN specification of the CAPE-OPEN Primary Process Modelling Component (PMC) called Manager that creates and manages a set of Primary PMC objects belonging all to the same category of Primary PMCs. Examples of Managers are Property Package Managers and Chemical Reaction Package Managers. The concept is extendable to Managers of other Primary PMC objects such as Unit Operations.
 
-# Acknowledgements
+## Acknowledgements
 
 This CAPE-OPEN Interface Specification Document has been developed within the Thermo Special Interest Group. The following are the main contributors:
 
@@ -11,19 +14,19 @@ This CAPE-OPEN Interface Specification Document has been developed within the Th
 * Michel Pons CO-LaN
 * Klaus Möller University of Cape Town
 
-# Introduction
+## Introduction
 
 The interface specification of a Manager is a generalization of the specification of a Property Package Manager (i). However, the Property Package Manager specification has some shortcomings, in particular for the configuration of new Property Packages and the restoration of Property Packages from persistence.
 
 This document introduces the concept of a Manager that is not specific to Property Packages, while addressing the above shortcomings.
 
-## Document Roadmap
+### Document Roadmap
 
 This document is a textual CAPE-OPEN Interface Specification Document of the CAPE-OPEN Primary Process Modelling Component (PMC) called Manager that creates and manages a set of Primary PMC Objects (vii) belonging all to the same category of Primary PMCs. A Manager allows creation of a Primary PMC Object by reloading a previously saved state, by selecting from a list of pre-configured Templates, or from scratch as a new unconfigured Primary PMC Object.
 
 The document belongs to the documentation set of CAPE-OPEN interface specifications in its version 1.1. This imposes that for software components implementing the interface defined in this document, the CapeVersion registration value must be set to “1.1”. 
 
-## Audience 
+### Audience  
 
 This document is intended primarily for software developers who want to create CAPE-OPEN Managers.
 
@@ -31,11 +34,11 @@ For any reader, an understanding of UML diagrams is assumed.
 
 This document is not intended for Process Engineers who are end-users of CAPE-OPEN process simulation components or process environments.
 
-# Requirements
+## Requirements
 
 This chapter defines the overall architectural design, the textual requirements on PMEs and Managers, and Use Cases.
 
-## Architecture
+### Architecture
 
 Any Primary PMC Object is characterized by a component type. The characterization is made through a pre-defined Category ID for stand-alone Primary PMC Objects or through the Category ID of the Manager that creates the Primary PMC Object. For example, there is a pre-defined Category ID of a stand-alone Property Package and there is a pre-defined Category ID for a Property Package Manager.
 
@@ -45,11 +48,11 @@ Each Manager software component type has a stand-alone counterpart. For example,
 
 A Manager is responsible for instantiating Primary PMC Objects. A Manager maintains a set of Templates, each containing the configuration of the instance of a Primary PMC Object. There are three different scenarios leading to the instantiation of a Primary PMC Object. A PME can request a Manager to create Primary PMC Objects as follows:
 
-1.  an un-configured Primary PMC Object for subsequent de-persistence by the PME,
+1. an un-configured Primary PMC Object for subsequent de-persistence by the PME,
 
-2.  from a list of pre-configured Templates,
+2. from a list of pre-configured Templates,
 
-3.  a new PMC Object to be configured on-the-fly by the Flowsheet Builder.
+3. a new PMC Object to be configured on-the-fly by the Flowsheet Builder.
 
 In all circumstances, the remaining lifespan of a Primary PMC object created by a Manager is like for any Primary PMC object, starting with *ICapeUtilities::Initialize* and ending with *ICapeUtilities::Terminate*.
 
@@ -69,16 +72,16 @@ In the scope of the Manager, a Template is identified through its name only. In 
 
 Through the Manager there is no access to internal information of the Template or the Primary PMCs corresponding to the Template. If more information is needed to select a  template, an instance of a Primary PMC Object must be created from the Template by the Manager so that this additional information may be retrieved from that instance itself. The Primary PMC Object should not be instantiated unnecessarily because it can be costly and prone to errors.
 
-## Textual requirements
+### Textual requirements
 
 Through textual requirements, this section explains how a Manager will interact with other software such as a PME or a Primary Process Modelling Component. These functional requirements are mostly written in natural language with technical terms defined in the Glossary when used repeatedly. Requirements are not organized in order of importance,
 urgency, and convenience.
 
-1.  : A Manager is a primary Process Modelling Component.
+1. : A Manager is a primary Process Modelling Component.
 
 *<u>Rationale:</u>* A Manager is created by a PME so it is a Primary Process Modelling Component.
 
-2.  : A Manager is categorized as a CAPE-OPEN component.
+2. : A Manager is categorized as a CAPE-OPEN component.
 
 *<u>Rationale:</u>* The Category ID for a CAPE-OPEN component appears in the registry for each of the CAPE-OPEN Primary PMCs. In future CAPE-OPEN versions, the ”CAPE-OPEN Component” Category ID will be used to indicate that CAPE-OPEN version 1.1 is supported by the component.
 
@@ -142,17 +145,17 @@ CLSID) that defines uniquely the Manager responsible for the instantiation of th
 
 *<u>Rationale</u>*: To conform with the Utilities interface specification (iv), the PME must initialize the Primary PMC Object, irrespective of the way this object was created by the Manager.
 
-## Use Cases
+### Use Cases
 
 Use Cases defined here are generic Use Cases for Package Managers. Use Cases specific to a particular category of Package Managers are found in the Interface Specification Document where the particular category is defined.
 
-### Actors
+#### Actors
 
 **PME**. A Process Modelling Environment also known as a CAPE-OPEN Simulator Executive (COSE).
 
 **Flowsheet Builder**. Human actor.
 
-### List of Use Cases
+#### List of Use Cases
 
 [UC-MGR-01 Enumerate managers](#enumerate-managers)
 
@@ -172,13 +175,13 @@ Use Cases defined here are generic Use Cases for Package Managers. Use Cases spe
 
 [UC-MGR-09 Configure a Manager](#configure-a-manager)
 
-### Use Case map
+#### Use Case map
 
 <img src="media\image3.png" style="width:6.925in;height:5.19722in" alt="Diagram Description automatically generated" />
 
 <span id="_Toc117577707" class="anchor"></span>Figure 2‑1 Use Case map with PME or Flowsheet Builder as Actors
 
-### Use Case Priorities
+#### Use Case Priorities
 
 **High**. Mandatory functionality for a Manager. Functionality without which the operation usability or performance of a Manager might be seriously compromised. Implementations that do not fulfil high priority Use Cases are not CAPE-OPEN compliant.
 
@@ -186,60 +189,105 @@ Use Cases defined here are generic Use Cases for Package Managers. Use Cases spe
 
 **Low**. Desirable functionality that will improve the performance of Managers. If this Use Case is not met usability or acceptance can decrease.
 
-### Use Cases
+#### Description of Use Cases
 
-#### Enumerate managers
+##### UC-MGR-01 Enumerate managers {#uc-mgr-01}
 
 Typically, a PME displays to the Process Engineer a list of available stand-alone Primary PMCs as well as a list of Managers providing Primary PMCs of the same type. Use Case fulfils the second part of this process.
 
-#### Create and Initialize a Manager
+|| |
+|---|---|
+|<u>Actor</u>:| &lt;PME&gt;|
+|<u>Priority</u>:| &lt;High&gt;|
+|<u>Status:</u>| &lt;This Use Case is fulfilled by middleware functionalities&gt;|
+|<u>Pre-conditions:</u>| &lt;None&gt;|
+|<u>Flow of events:</u>|From the middleware component registry, PME enumerates all available Managers fitting a given purpose (Managers are registered using the Category ID associated with the Manager type). |
+|<u>Post-conditions:</u>|&lt;The available Managers have been enumerated&gt;|
+|<u>Errors</u>:|None|
+|<u>Uses</u>:|None|
+|| |
+
+##### UC-MGR-02 Create and Initialize a Manager {#uc-mgr-02}
 
 Use Case applies a generic Use Case, applicable to all Primary PMCs, within the context of the Manager Common interface specification. This Use Case does not introduce any additional feature to the generic Use Case.
 
-#### Enumerate Templates Available in a Manager
+|| |
+|---|---|
+|<u>Actor</u>:| &lt;PME&gt;|
+|<u>Priority</u>:| &lt;High&gt;|
+|<u>Status:</u>| &lt;This Use Case is fulfilled by middleware functionalities and *ICapeUtilities::Initialize*.&gt;|
+|<u>Pre-conditions:</u>| &lt;None&gt;|
+|<u>Flow of events:</u>|1. PME instantiates the Manager using middleware functionalities.<br>2. PME sets the Simulation Context on the Manager.<br>3. PME initializes the Manager using ICapeUtilities::Initialize.<br>Note: at the end of the lifespan of the Manager (at the latest, at the time of closing the PME), the Manager must be terminated by the PME (using ICapeUtilities::Terminate).|
+|<u>Post-conditions:</u>|&lt;The Manager is ready for use.&gt;|
+|<u>Errors</u>:|&lt;The Manager cannot be created.&gt;|
+|<u>Uses</u>:|None.|
+|| |
+
+##### UC-MGR-03 Enumerate Templates Available in a Manager{#uc-mgr-03}
 
 Flowsheet Builder wants to know which Templates are available from the Manager. Therefore, the PME needs the list of Templates.
 
 The PME should not instantiate all available Managers but should instantiate the Manager(s) for which the Flowsheet Builder requests the list of Templates. Instantiation of all Managers on the system, without the Flowsheet Builder explicitly asking for it, may lead to undesired side effects such as checking out and locking licenses, substantial delays, and makes the PME susceptible to unavoidable crashes in case of an implementation error in any Manager on the system.
 
-####  Select a template
+|| |
+|---|---|
+|<u>Actor</u>:| &lt;PME&gt;|
+|<u>Priority</u>:| &lt;High&gt;|
+|<u>Status:</u>| &lt;Use Case is fulfilled by *ICapeManager::GetTemplateList* method.&gt;|
+|<u>Pre-conditions:</u>| &lt;The Manager has been created using [UC-MGR-02](#uc-mgr-02)&gt;|
+|<u>Flow of events:</u>|1. The PME calls GetTemplateList.<br>2. The Manager returns a list of Template names (list could be empty).</li></ol>|
+|<u>Post-conditions:</u>|&lt;The available Templates have been enumerated and can be presented to the Process Engineer.&gt;|
+|<u>Errors</u>:|&lt;The Manager fails to provide a list of Template names.&gt;|
+|<u>Uses</u>:|None|
+|| |
 
-#### 
+##### UC-MGR-04 Select a template{#uc-mgr-04}
 
-#### Check Whether Manager Supports Creation without A Template
+|| |
+|---|---|
+|<u>Actor</u>:| &lt;Flowsheet Builder&gt;|
+|<u>Priority</u>:| &lt;High&gt;|
+|<u>Status:</u>| &lt;Use Case is fulfilled by functionality internal to the PME.&gt;|
+|<u>Pre-conditions:</u>| &lt;[UC-MGR-03](#uc-mgr-03) has been executed successfully&gt;|
+|<u>Flow of events:</u>|1. The PME presents a list of Template names to the Flowsheet Builder.<br>2. The Flowsheet Builder selects a Template name from the list.<br>Note that the Flowsheet Builder is provided only the names of the Templates and no other information. Upon request from the Flowsheet Builder, the PME may offer access to more information on a given Template. Access is obtained by instantiating a Primary PMC Object from the Template (exercising [UC-MGR-07](#uc-mgr-07). It is not advisable for the PME to automatically instantiate a Primary PMC Object for each available Template in the list as this may be a very expensive and error-prone operation.|
+|<u>Post-conditions:</u>|&lt;A Template has been selected.&gt;|
+|<u>Errors</u>:|&lt;Flowsheet Builder has cancelled the selection.&lt;|
+|<u>Uses</u>:|&lt;Flowsheet Builder has cancelled the selection.&lt;|
+|| |
+
+##### UC-MGR-05 Check Whether Manager Supports Creation without A Template{#uc-mgr-05}
 
 Context: the PME wants to provide the Flowsheet Builder with the possibility to create a Primary PMC Object from a Manager without using a Template. In a typical workflow, the PME checks if the Manager supports such a functionality: it allows the PME to enable/disable appropriate controls within its GUI.
 
-<u>Actor</u>: &lt;PME&gt;
+|| |
+|---|---|
+|<u>Actor</u>:| &lt;PME&gt;|
+|<u>Priority</u>:| &lt;High&gt;|
+|<u>Status:</u>| &lt;Use Case is fulfilled through property *SupportsCreateNew* of *ICapeManager*&gt;|
+|<u>Pre-conditions:</u>| &lt;[UC-MGR-02](#uc-mgr-02) has been executed successfully&gt;|
+|<u>Flow of events:</u>|The PME obtains the value of the property *SupportsCreateNew* from *ICapeManager*.|
+|<u>Post-conditions:</u>|&lt;Value of property *SupportsCreateNew* is known to the PME&gt;<br> &lt;The PME arranges its user interface accordingly&gt;|
+|<u>Errors</u>:|None|
+|<u>Uses</u>:|None|
+|| |
 
-<u>Priority</u>: &lt;High&gt;
-
-<u>Status:</u> &lt;Use Case is fulfilled through property *SupportsCreateNew* of *ICapeManager*&gt;
-
-<u>Pre-conditions:</u> &lt;UC-MGR-02 has been executed successfully&gt;
-
-<u>Flow of events:</u>
-
-The PME obtains the value of the property *SupportsCreateNew* from *ICapeManager*.
-
-<u>Post-conditions:</u>
-
-&lt;Value of property *SupportsCreateNew* is known to the PME&gt;;
-&lt;The PME arranges its user interface accordingly&gt;
-
-<u>Errors</u>:
-
-None
-
-<u>Uses</u>:
-
-None
-
-#### Create and Customize a Primary PMC Object Without Using a Template
+##### UC-MGR-06 Create and Customize a Primary PMC Object Without Using a Template{#uc-mgr-06}
 
 Context: The Process Engineer wants to create a custom Primary PMC object from scratch. The created Primary PMC Object is for use in the current PME context.
 
-#### Create a Primary PMC Object from a Template
+|| |
+|---|---|
+|<u>Actor</u>:| &lt;PME&gt;|
+|<u>Priority</u>:| &lt;High&gt;|
+|<u>Status:</u>| &lt;Use Case is fulfilled through property *SupportsCreateNew* of *ICapeManager*&gt;|
+|<u>Pre-conditions:</u>| &lt;[UC-MGR-02](#uc-mgr-02) has been executed successfully&gt;|
+|<u>Flow of events:</u>|The PME obtains the value of the property *SupportsCreateNew* from *ICapeManager*.|
+|<u>Post-conditions:</u>|&lt;Value of property *SupportsCreateNew* is known to the PME&gt;<br> &lt;The PME arranges its user interface accordingly&gt;|
+|<u>Errors</u>:|None|
+|<u>Uses</u>:|None|
+|| |
+
+##### UC-MGR-07 Create a Primary PMC Object from a Template{#uc-mgr-07}
 
 Context: the Flowsheet Builder may have selected a Template name using UC-MGR-04 or a Template name is known to the PME. This Use Case describes the direct instantiation of a Primary PMC object that the PME launches before any use of the object. This is a common and necessary step in all procedures leading to exercising a Primary PMC within a Flowsheet.
 
@@ -274,7 +322,7 @@ If the Template name is recognized, the Manager creates an instance of the Prima
 
 None
 
-#### Restore a Primary PMC
+##### UC-MGR-08 Restore a Primary PMC{#uc-mgr-08}
 
 <u>Actor:</u> &lt;PME&gt;
 
@@ -308,7 +356,7 @@ The PME initializes the restored Primary PMC Object using *ICapeUtilities::Initi
 
 <u>Uses:</u> None
 
-#### Configure a Manager
+##### UC-MGR-09 Configure a Manager{#uc-mgr-09}
 
 Context: Some Managers may have external means of configuration, for example save a particular document as a Template for a CAPE-OPEN Manager. As such, functionality falls out of the CAPE-OPEN scope and is not described here.
 
@@ -342,7 +390,7 @@ Once Edit is finished and returns OK, the PME assumes that the list of Templates
 
 None
 
-# Analysis and Design
+## Analysis and Design
 
 A Manager is a Primary PMC object. A PME must use it as such. The following sequence diagram exemplifies how a new instance of a Manager is used by a PME.
 
@@ -362,7 +410,7 @@ The sequence of actions around the creation of a Primary PMC Object based on a T
 
 <span id="_Toc117577710" class="anchor"></span>Figure 3‑3 Using a Primary PMC created from a Template
 
-## Overview
+### Overview
 
 A Manager is a Primary PMC component. The Manager implements the *ICapeManager* interface as well as CAPE-OPEN common interfaces mandatory for a Primary Process Modelling Component that itself derives from any CAPE-OPEN Component.
 
@@ -389,7 +437,7 @@ The concept of Manager presumes that all Primary PMC objects created by a Manage
 
 <span id="_Ref116487099" class="anchor"></span>Figure 3‑7 Persistable Primary PMC
 
-## Manager
+### Manager
 
 A Manager component is a primary CAPE-OPEN component and is registered as a CAPE-OPEN component. There is no specific Category ID for any Manager.
 
@@ -397,7 +445,7 @@ However, all specific Managers are assigned a Category ID by the specification d
 
 Note that a Manager may have more than one type of managed Objects. For example, a Manager, for which all objects are Property Packages supporting Chemical Reactions, may be identified both as a Property Package Manager and as a Chemical Reaction Package Manager. Be aware that all objects exposed by a Manager are expected to implement functionality for all PMC type advertised through the Manager Category ID.
 
-## Interface description
+### Interface description
 
 The following figure describes the *ICapeManager* interface.
 
@@ -528,11 +576,11 @@ Notes
 
 The list of names of available Template can be obtained by executing *GetTemplateList*.
 
-# Scenarios 
+## Scenarios 
 
 This chapter lists possible scenarios for a Manager component.
 
-## Property Package
+### Property Package
 
 Property Packages can be managed by a Property Package Manager. 
 
@@ -540,7 +588,7 @@ Property Packages can be managed by a Property Package Manager.
 
 <span id="_Toc117577716" class="anchor"></span>Figure 4‑1 Property Package Manager
 
-## Reaction Package
+### Reaction Package
 
 Chemical Reaction Packages are managed by a Chemical Reaction Package Manager.
 
@@ -548,27 +596,27 @@ Chemical Reaction Packages are managed by a Chemical Reaction Package Manager.
 
 <span id="_Toc117577717" class="anchor"></span>Figure 4‑2 Chemical Reaction Package Manager
 
-# Prototypes implementation 
+## Prototypes implementation 
 
 None.
 
-# Glossary
+## Glossary
 
 Only terms specific to the Chemical Reactions interfaces are defined in this section. For definition of other terms used in this document, refer to the glossary in the Thermodynamic and Physical Properties Interface specification (iii) document in version 1.1.
 
-## Flowsheet Builder
+### Flowsheet Builder
 
 The person who sets up the flowsheet, the structure of the flowsheet, chooses thermodynamic models and the unit operation models that are in the flowsheet. This person hands over a working flowsheet to the Flowsheet User (The person who uses an existing flowsheet. This person will put new data into the flowsheet, rather than change the structure of the flowsheet). The Flowsheet Builder can act as a Flowsheet User.
 
-## Instance
+### Instance
 
 An instance is a Primary Process Modelling Component. It is a software component created by a Manager from a Template.
 
-## Template
+### Template
 
 A Manager operates on a list of Templates. A Template contains the configuration of the instance to be created by the Manager. Multiple instances can be created by the Manager from a given Template. Once an instance is created from a Template, the configuration of the instance may be modified through functionality provided by the instance. Any configuration change of the instance does not affect the Template.
 
-# Bibliography
+## Bibliography
 
 CAPE-OPEN Interface Specification: Thermodynamic and Physical Properties Version 1.1
 

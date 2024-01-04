@@ -195,7 +195,7 @@ Use Cases defined here are generic Use Cases for Package Managers. Use Cases spe
 
 Typically, a PME displays to the Process Engineer a list of available stand-alone Primary PMCs as well as a list of Managers providing Primary PMCs of the same type. Use Case fulfils the second part of this process.
 
-|| |
+<div class = no-header>| |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
@@ -205,13 +205,13 @@ Typically, a PME displays to the Process Engineer a list of available stand-alon
 |<u>Post-conditions:</u>|&lt;The available Managers have been enumerated&gt;|
 |<u>Errors</u>:|None|
 |<u>Uses</u>:|None|
-|| |
+
 
 ##### UC-MGR-02 Create and Initialize a Manager {#uc-mgr-02}
 
 Use Case applies a generic Use Case, applicable to all Primary PMCs, within the context of the Manager Common interface specification. This Use Case does not introduce any additional feature to the generic Use Case.
 
-|| |
+<div class = no-header>| |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
@@ -221,7 +221,6 @@ Use Case applies a generic Use Case, applicable to all Primary PMCs, within the 
 |<u>Post-conditions:</u>|&lt;The Manager is ready for use.&gt;|
 |<u>Errors</u>:|&lt;The Manager cannot be created.&gt;|
 |<u>Uses</u>:|None.|
-|| |
 
 ##### UC-MGR-03 Enumerate Templates Available in a Manager {#uc-mgr-03}
 
@@ -229,7 +228,7 @@ Flowsheet Builder wants to know which Templates are available from the Manager. 
 
 The PME should not instantiate all available Managers but should instantiate the Manager(s) for which the Flowsheet Builder requests the list of Templates. Instantiation of all Managers on the system, without the Flowsheet Builder explicitly asking for it, may lead to undesired side effects such as checking out and locking licenses, substantial delays, and makes the PME susceptible to unavoidable crashes in case of an implementation error in any Manager on the system.
 
-|| |
+<div class = no-header>| |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
@@ -239,11 +238,11 @@ The PME should not instantiate all available Managers but should instantiate the
 |<u>Post-conditions:</u>|&lt;The available Templates have been enumerated and can be presented to the Process Engineer.&gt;|
 |<u>Errors</u>:|&lt;The Manager fails to provide a list of Template names.&gt;|
 |<u>Uses</u>:|None|
-|| |
+
 
 ##### UC-MGR-04 Select a template {#uc-mgr-04}
 
-|| |
+<div class = no-header>| |
 |---|---|
 |<u>Actor</u>:| &lt;Flowsheet Builder&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
@@ -251,15 +250,14 @@ The PME should not instantiate all available Managers but should instantiate the
 |<u>Pre-conditions:</u>| &lt;[UC-MGR-03](#uc-mgr-03) has been executed successfully&gt;|
 |<u>Flow of events:</u>|1. The PME presents a list of Template names to the Flowsheet Builder.<br>2. The Flowsheet Builder selects a Template name from the list.<br>Note that the Flowsheet Builder is provided only the names of the Templates and no other information. Upon request from the Flowsheet Builder, the PME may offer access to more information on a given Template. Access is obtained by instantiating a Primary PMC Object from the Template (exercising [UC-MGR-07](#uc-mgr-07). It is not advisable for the PME to automatically instantiate a Primary PMC Object for each available Template in the list as this may be a very expensive and error-prone operation.|
 |<u>Post-conditions:</u>|&lt;A Template has been selected.&gt;|
-|<u>Errors</u>:|&lt;Flowsheet Builder has cancelled the selection.&lt;|
-|<u>Uses</u>:|&lt;Flowsheet Builder has cancelled the selection.&lt;|
-|| |
+|<u>Errors</u>:|&lt;Flowsheet Builder has cancelled the selection.&gt;|
+|<u>Uses</u>:|&lt;[UC-MGR-07](#uc-mgr-07)&gt;|
 
 ##### UC-MGR-05 Check Whether Manager Supports Creation without A Template {#uc-mgr-05}
 
 Context: the PME wants to provide the Flowsheet Builder with the possibility to create a Primary PMC Object from a Manager without using a Template. In a typical workflow, the PME checks if the Manager supports such a functionality: it allows the PME to enable/disable appropriate controls within its GUI.
 
-|| |
+<div class = no-header>| |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
@@ -269,23 +267,21 @@ Context: the PME wants to provide the Flowsheet Builder with the possibility to 
 |<u>Post-conditions:</u>|&lt;Value of property *SupportsCreateNew* is known to the PME&gt;<br> &lt;The PME arranges its user interface accordingly&gt;|
 |<u>Errors</u>:|None|
 |<u>Uses</u>:|None|
-|| |
 
-##### UC-MGR-06 Create and Customize a Primary PMC Object Without Using a Template{#uc-mgr-06}
+##### UC-MGR-06 Create and Customize a Primary PMC Object Without Using a Template {#uc-mgr-06}
 
 Context: The Process Engineer wants to create a custom Primary PMC object from scratch. The created Primary PMC Object is for use in the current PME context.
 
-|| |
+<div class = no-header>| |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
-|<u>Priority</u>:| &lt;High&gt;|
-|<u>Status:</u>| &lt;Use Case is fulfilled through property *SupportsCreateNew* of *ICapeManager*&gt;|
+|<u>Priority</u>:| &lt;Medium&gt;|
+|<u>Status:</u>| &lt;Use Case is fulfilled by *ICapeManager::CreateNew* and by property *ICapeManager::LastCreateNewWasCanceledByUser*&gt;|
 |<u>Pre-conditions:</u>| &lt;[UC-MGR-02](#uc-mgr-02) has been executed successfully&gt;|
-|<u>Flow of events:</u>|The PME obtains the value of the property *SupportsCreateNew* from *ICapeManager*.|
-|<u>Post-conditions:</u>|&lt;Value of property *SupportsCreateNew* is known to the PME&gt;<br> &lt;The PME arranges its user interface accordingly&gt;|
-|<u>Errors</u>:|None|
-|<u>Uses</u>:|None|
-|| |
+|<u>Flow of events:</u>|<ol><li>The PME optionally exercises UC-MGR-05.<ol type="a"><li>If the Manager does not support creation of a Primary PMC object without using a Template, Use Case stops here.</li></ol><li>The PME exercises ICapeManager::CreateNew.</li><li>The Manager creates a new Primary PMC Object without using any Template. The Primary PMC Object may be a default or an empty Primary PMC Object. The Manager may let the Flowsheet Builder performs customization of the Primary PMC object, using means private to the Manager.<ol type="a"><li>If the Flowsheet Builder cancels the creation, the Manager raises an exception.</li><li>The PME may request the *ICapeManager::LastCreateNewWasCanceledByUser* property from the Manager to decide whether to display an error message to the Flowsheet Builder. Use Case stops here.</li></ol><li>The Manager returns a new Primary PMC Object.</li></ol>|
+|<u>Post-conditions:</u>|&lt;A Primary PMC Object is available to the PME.&gt;|
+|<u>Errors</u>:|&lt;Flowsheet Builder cancelled the creation&gt;;<br> &lt;Manager does not support creation of a Primary PMC Object from scratch&gt;; <br>&lt;The PMC instance cannot be created and is not delivered to the PME (for example out of memory, license issue)&gt;|
+|<u>Uses</u>:|[UC-MGR-05](#uc-mgr-05)|
 
 ##### UC-MGR-07 Create a Primary PMC Object from a Template {#uc-mgr-07}
 

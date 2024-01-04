@@ -194,6 +194,12 @@ Use Cases defined here are generic Use Cases for Package Managers. Use Cases spe
 
 Typically, a PME displays to the Process Engineer a list of available stand-alone Primary PMCs as well as a list of Managers providing Primary PMCs of the same type. Use Case fulfils the second part of this process.
 
+<style>
+    th {
+        display: none;
+    }
+</style>
+
 | | |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
@@ -329,6 +335,12 @@ Per design, administration of Templates (e.g., add, remove, rename, edit a Templ
 |<u>Errors</u>:|&lt;The Manager does not implement *ICapeUtilities::Edit* (raises a not-implemented error).&gt;|
 |<u>Uses</u>:|None|
 
+<style>
+    th {
+        display: initial;
+    }
+</style>
+
 ## Analysis and Design
 
 A Manager is a Primary PMC object. A PME must use it as such. The following sequence diagram exemplifies how a new instance of a Manager is used by a PME.
@@ -393,7 +405,8 @@ The following figure describes the *ICapeManager* interface.
 <span id="_Toc117577715" class="anchor"></span>Figure 3‑8 Interface
 diagram of *ICapeManager*
 
-#### ICapeManager.SupportsCreateNew
+#### ICapeManager.SupportsCreateNew 
+
 | Interface Name | *ICapeManager*    |
 |----------------|-------------------|
 | Property Name  | SupportsCreateNew |
@@ -410,7 +423,8 @@ Notes
 
 If *CreateNew* function is not implemented, the property value is False. The PME can use this property to properly arrange its user interface, for example enable/disable a button.
 
-#### ICapeManager.LastCreateNewWasCanceledByUser
+#### ICapeManager.LastCreateNewWasCanceledByUser 
+
 | Interface Name | *ICapeManager*                 |
 |----------------|--------------------------------|
 | Property Name  | LastCreateNewWasCanceledByUser |
@@ -427,7 +441,8 @@ Notes
 
 If *CreateNew* was not previously called in the current thread, the property may raise an error or have an arbitrary value.
 
-#### ICapeManager.CreateForLoad
+#### ICapeManager.CreateForLoad 
+
 | Interface Name | *ICapeManager* |
 |----------------|----------------|
 | Method Name    | CreateForLoad  |
@@ -449,7 +464,8 @@ Notes
 
 As per the requirements in the Persistence Common Interface Specification (vi) and the Utilities Common Interface Specification (iv), before using the created Object, the PME must invoke Load on the persistence interface of the created Object, followed by initialization (*ICapeUtilities::Initialize*). Simulation Context may be set at any time, preferably before calling Load.
 
-#### ICapeManager.CreateNew
+#### ICapeManager.CreateNew 
+
 | Interface Name | *ICapeManager* |
 |----------------|----------------|
 | Method Name    | CreateNew      |
@@ -475,7 +491,8 @@ A new instance is not based on a Template and may be a blank, un-configured inst
 
 In CAPE-OPEN 1.2 this method will carry a CapeWindowId input argument that describes the parent window for the dialog, to conform to *ICapeUtilities::Edit*.
 
-#### ICapeManager.GetTemplateList
+#### ICapeManager.GetTemplateList 
+
 | Interface Name | *ICapeManager*  |
 |----------------|-----------------|
 | Method Name    | GetTemplateList |
@@ -497,7 +514,8 @@ Notes
 
 The returned list can be empty.
 
-#### ICapeManager.CreateFromTemplate
+#### ICapeManager.CreateFromTemplate 
+
 | Interface Name | *ICapeManager*     |
 |----------------|--------------------|
 | Method Name    | CreateFromTemplate |

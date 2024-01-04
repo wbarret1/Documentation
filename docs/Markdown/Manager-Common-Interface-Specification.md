@@ -211,7 +211,8 @@ Typically, a PME displays to the Process Engineer a list of available stand-alon
 
 Use Case applies a generic Use Case, applicable to all Primary PMCs, within the context of the Manager Common interface specification. This Use Case does not introduce any additional feature to the generic Use Case.
 
-<div class = no-header>| |
+<div class = no-header>
+| |
 |---|---|
 |<u>Actor</u>:| &lt;PME&gt;|
 |<u>Priority</u>:| &lt;High&gt;|
@@ -221,6 +222,7 @@ Use Case applies a generic Use Case, applicable to all Primary PMCs, within the 
 |<u>Post-conditions:</u>|&lt;The Manager is ready for use.&gt;|
 |<u>Errors</u>:|&lt;The Manager cannot be created.&gt;|
 |<u>Uses</u>:|None.|
+</div>
 
 ##### UC-MGR-03 Enumerate Templates Available in a Manager {#uc-mgr-03}
 

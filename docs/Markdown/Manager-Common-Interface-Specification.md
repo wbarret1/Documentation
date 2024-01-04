@@ -77,19 +77,19 @@ Through the Manager there is no access to internal information of the Template o
 Through textual requirements, this section explains how a Manager will interact with other software such as a PME or a Primary Process Modelling Component. These functional requirements are mostly written in natural language with technical terms defined in the Glossary when used repeatedly. Requirements are not organized in order of importance,
 urgency, and convenience.
 
-#### REQ-MQR-01: A Manager is a primary Process Modelling Component. {#req-mgr-01}
+#### REQ-MGR-01: A Manager is a primary Process Modelling Component. {#req-mgr-01}
 
 *<u>Rationale:</u>* A Manager is created by a PME so it is a Primary Process Modelling Component.
 
-#### REQ-MQR-02: A Manager is categorized as a CAPE-OPEN component. {#req-mgr-02}
+#### REQ-MGR-02: A Manager is categorized as a CAPE-OPEN component. {#req-mgr-02}
 
 *<u>Rationale:</u>* The Category ID for a CAPE-OPEN component appears in the registry for each of the CAPE-OPEN Primary PMCs. In future CAPE-OPEN versions, the ”CAPE-OPEN Component” Category ID will be used to indicate that CAPE-OPEN version 1.1 is supported by the component.
 
-#### REQ-MQR-03: Objects instantiated by a Manager are Primary Process Modelling Components. {#req-mgr-03}
+#### REQ-MGR-03: Objects instantiated by a Manager are Primary Process Modelling Components. {#req-mgr-03}
 
 *<u>Rationale</u>*: After instantiation by a Manager, from the PME point of view, the Primary PMC Object is indistinguishable from a stand-alone Primary PMC Object of the same type.
 
-#### REQ-MQR-04: A Manager is registered with CAPE-OPEN Category ID(s) indicating which type(s) of software components the Manager creates. {#req-mgr-04}
+#### REQ-MGR-04: A Manager is registered with CAPE-OPEN Category ID(s) indicating which type(s) of software components the Manager creates. {#req-mgr-04}
 
 *<u>Rationale:</u>* A Manager is a Primary Process Modelling Component. Each Primary Process Modelling Component belongs to a category that allows a PME to create a list of the Primary Process Modelling Components belonging to this category without the need to instantiate each of those.
 
@@ -97,7 +97,7 @@ Without the Manager indicating the type(s) of Manager it is, the PME would list 
 
 Only stand-alone Primary PMC Objects are registered with their own Category IDs.
 
-#### REQ-MQR-05: Each instance created by a Manager is of the software component type(s) consistent with the Manager type(s). {#req-mgr-05}
+#### REQ-MGR-05: Each instance created by a Manager is of the software component type(s) consistent with the Manager type(s). {#req-mgr-05}
 
 *<u>Rationale:</u>* For example, if the Manager is a Property Package Manager, all software components created by the Manager must be Property Packages and must comply with the requirements on a Property Package as outlined in (i).
 
@@ -105,42 +105,42 @@ If the Manager is a Chemical Reaction Package Manager, all software components c
 
 If the Manager is both a Property Package Manager and a Chemical Reaction Package Manager, all software components created by the Manager must be Property Packages supporting Chemical Reactions and must comply with the requirements on a Property Package supporting Chemical Reactions as outlined in (ii).
 
-#### REQ-MQR-06: A Manager provides the service to deliver the list of names of its Templates. {#req-mgr-06}
+#### REQ-MGR-06: A Manager provides the service to deliver the list of names of its Templates. {#req-mgr-06}
 
 *<u>Rationale:</u>* The name of the Template is needed to request the creation of a Primary PMC based on the Template. For ease of interaction with the Process Engineer, the PME must have access to the list of Templates supported by the Manager.
 
 Note that it is not required from the Manager to be able to create Primary PMC Objects from all the Templates listed. Creation may fail for a number of reasons (e.g., ill configured Template, license is not present for a particular feature).
 
-#### REQ-MQR-07: A Manager creates an instance from a Template with the same name as the Template. {#req-mgr-07}
+#### REQ-MGR-07: A Manager creates an instance from a Template with the same name as the Template. {#req-mgr-07}
 
 *<u>Rationale:</u>* Matter of consistency which can be helpful to the Process Engineer. If names need to be unique (names used in a Collection for instance), it is the responsibility of the PME to rename the instance as needed using operations from *ICapeIdentification* (x). 
 
-#### REQ-MQR-08: The name of a Template follows the rules of the name property in *ICapeIdentification.* {#req-mgr-08}
+#### REQ-MGR-08: The name of a Template follows the rules of the name property in *ICapeIdentification.* {#req-mgr-08}
 
 *<u>Rationale:</u>* Since the instance created from a Template is identified by the name of the Template, the name of the Template must follow the rules applicable to any name identifying a CAPE-OPEN component through *ICapeIdentification* (x).
 
-#### REQ-MQR-09: A Template is identified by its name in a case insensitive manner.  {#req-mgr-09}
+#### REQ-MGR-09: A Template is identified by its name in a case insensitive manner.  {#req-mgr-09}
 
 *<u>Rationale:</u>* Case insensitiveness is in accordance with choices made in CAPE-OPEN.
 
-#### REQ-MQR-10: All Template names must be unique within a Manager. {#req-mgr-10}
+#### REQ-MGR-10: All Template names must be unique within a Manager. {#req-mgr-10}
 
 *<u>Rationale:</u>* Names are used by the Manager and the PME to uniquely identify Templates.
 
-#### REQ-MQR-11: If a PME persists the state of a Primary PMC Object created via a Manager, the PME persists also sufficient information to create the Manager. {#req-mgr-11}
+#### REQ-MGR-11: If a PME persists the state of a Primary PMC Object created via a Manager, the PME persists also sufficient information to create the Manager. {#req-mgr-11}
 
 *<u>Rationale:</u>* The PME cannot directly instantiate a Primary PMC Object originally created via a Manager. Therefore, the PME must be able to find which Manager needs to be instantiated in order for the proper Manager to load back the Primary PMC Object. The PME needs to keep sufficient information (e.g., ProgID, version independent ProgID, or
 CLSID) that defines uniquely the Manager responsible for the instantiation of the Primary PMC Object.
 
-#### REQ-MQR-12: A Primary PMC Object created via a Manager implements persistence. {#req-mgr-12}
+#### REQ-MGR-12: A Primary PMC Object created via a Manager implements persistence. {#req-mgr-12}
 
 *<u>Rationale:</u>* As per the design decision, persistence is mandatory for all Primary PMC Objects created via a Manager.
 
-#### REQ-MQR-013: A Manager advertises whether it supports creating a new instance from scratch. {#req-mgr-13}
+#### REQ-MGR-013: A Manager advertises whether it supports creating a new instance from scratch. {#req-mgr-13}
 
 *<u>Rationale</u>*: A Manager may or may not support creation of a new instance w/o a Template. The PME can properly arrange its user interface (for example enabling/disabling “new instance”) if it knows whether the Manager supports or not this functionality.
 
-#### REQ-MQR-14: PME must initialize the Primary PMC object after creation.
+#### REQ-MGR-14: PME must initialize the Primary PMC object after creation.
 
 *<u>Rationale</u>*: To conform with the Utilities interface specification (iv), the PME must initialize the Primary PMC Object, irrespective of the way this object was created by the Manager.
 

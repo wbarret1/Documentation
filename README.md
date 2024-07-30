@@ -1,12 +1,10 @@
 # Docummentation
-Documentation for CAPE-OPEN Interface Specifications
+Documentation for CAPE-OPEN Interface Specifications.
 
-[Markdown](/docs/Markdown/Manager-Common-Interface-Specification.md)
+At present, the site contains 4 versions of the Manager Common Interface Specifications, all of which were saved from the word .docx file.
 
-[Single File Web Page](/docs/SingleFileWebPage/Manager.htm)
+The Markodwn version was created using [Pandoc](https://pandoc.org/) to convert the Word document to Github-flavored Markdown.
 
-[Web Page](/docs/WebPage/Manager.htm)
+The remining versions were the result of performing a "Save As" to the web page type directly in Word.
 
-[Filtered Web Page](/docs/FilteredWebPage/Manager.htm)
-
-README.md
+The Index page for the documentation site is: [https://wbarret1.github.io/Documentation/](https://wbarret1.github.io/Documentation/).

@@ -1,4 +1,4 @@
-# Docummentation
+# Documentation
 Documentation for CAPE-OPEN Interface Specifications.
 
 At present, the site contains 4 versions of the Manager Common Interface Specifications, all of which were saved from the word .docx file.

@@ -3,3 +3,10 @@ Hello World!
 Managers Documentation
 
 [Markdown](/Markdown/Manager-Common-Interface-Specification.md)
+
+[Single File Web Page](docs/SingleFileWebPage/Manager.htm)
+
+[Web Page](docs/WebPage/Manager.htm)
+
+[Filtered Web Page](docs/FilteredWebPage/Manager.htm)
+
